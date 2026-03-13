@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'home_screen.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,6 +16,14 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
 
   @override
+  void initState() {
+    super.initState();
+    // Stubbed test credentials for quick login during early development.
+    _emailController.text = 'test@studysync.dev';
+    _passwordController.text = 'password';
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
@@ -28,9 +37,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onLogin() {
-    // TODO: wire up authentication
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Logging in...')),
+    // For testing/demo purposes, bypass authentication and go straight to the home screen.
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => HomeScreen(
+          userName: _emailController.text.isNotEmpty
+              ? _emailController.text.split('@').first
+              : 'Alex',
+        ),
+      ),
     );
   }
 

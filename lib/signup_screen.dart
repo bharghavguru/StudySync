@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_screen.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -30,9 +32,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onSignUp() {
-    // TODO: Add sign up logic
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Signing up...')),
+    // For prototyping/test purposes, allow signup without validation and go straight to home.
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => HomeScreen(
+          userName: _nameController.text.isNotEmpty ? _nameController.text : 'Alex',
+        ),
+      ),
     );
   }
 
