@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
 import 'signup_screen.dart';
+import 'timetable_setup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,13 +37,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onLogin() {
-    // For testing/demo purposes, bypass authentication and go straight to the home screen.
-    Navigator.of(context).pushReplacement(
+    // For testing/demo purposes, bypass authentication and proceed to a post-login onboarding step.
+    Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => HomeScreen(
+        builder: (_) => TimetableSetupScreen(
           userName: _emailController.text.isNotEmpty
               ? _emailController.text.split('@').first
               : 'Alex',
+          // Position in the overall onboarding flow (e.g. Step 4 of 6).
+          currentStep: 4,
+          totalSteps: 6,
         ),
       ),
     );

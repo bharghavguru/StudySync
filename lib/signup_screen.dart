@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
+import 'timetable_setup_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -32,11 +32,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onSignUp() {
-    // For prototyping/test purposes, allow signup without validation and go straight to home.
-    Navigator.of(context).pushReplacement(
+    // After signup, use the timetable setup onboarding screen.
+    Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => HomeScreen(
+        builder: (_) => TimetableSetupScreen(
           userName: _nameController.text.isNotEmpty ? _nameController.text : 'Alex',
+          currentStep: 4,
+          totalSteps: 6,
         ),
       ),
     );
