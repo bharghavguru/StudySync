@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
+import 'completion_screen.dart';
 
 class PermissionsScreen extends StatefulWidget {
   const PermissionsScreen({
@@ -25,7 +25,7 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
   void _goNext() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => HomeScreen(userName: widget.userName),
+        builder: (_) => CompletionScreen(userName: widget.userName),
       ),
     );
   }
